@@ -1,0 +1,10 @@
+/.serverless/
+/.database/
+/.dynamodb/
+/node_modules/
+/venv/
+
+package-lock.json
+
+*.pyc
+*.pyo
