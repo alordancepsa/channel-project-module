@@ -22,6 +22,7 @@ Este boileplate esta adaptado para funcionar sobre lambdas con solo 5 minutos se
  - pip install -r requirements.txt
 
 ## Iniciamos el servicio en este caso emulando aws lambda
+ - source venv/bin/activate
  - sls wsgi serve --port 5000
 
 (http://localhost:5000/apidocs la generación de swagger y descubrimiento de endpoints es automatica)
