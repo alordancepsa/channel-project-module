@@ -19,6 +19,7 @@ Este boileplate esta adaptado para funcionar sobre lambdas con solo 5 minutos se
  - npm install -g serverless
  - npm install
  - virtualenv --python=python3.7 venv
+ - source venv/bin/activate
  - pip install -r requirements.txt
 
 ## Iniciamos el servicio en este caso emulando aws lambda
