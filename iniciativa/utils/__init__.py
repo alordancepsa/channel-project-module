@@ -6,7 +6,8 @@ COMPARISON_OPERATORS = {
     "LTE": "<=",
     "GTE": ">=",
     "EQ": "=",
-    "NEQ": "!="
+    "NEQ": "!=",
+    "LIKE": "like"
 }
 
 def process(data, parameters={}):
