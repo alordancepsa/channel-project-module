@@ -19,3 +19,4 @@ flasgger==0.9.5
 Flask-Migrate==2.7.0
 Flask-Script==2.0.6
 flask-marshmallow==0.14.0
+SQLAlchemy==1.4.3

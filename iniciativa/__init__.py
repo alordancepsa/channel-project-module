@@ -13,6 +13,7 @@ from .datalake.masters.flags.endpoints import FlagItem, FlagIndex
 # ALL API resource
 api.add_resource(CompanyItem, '/masters/company/<int:company_id>/')
 api.add_resource(CompanyIndex, '/masters/company/')
+api.add_resource(CompanySearch, '/masters/company/search')
 
 
 api.add_resource(FlagItem, '/masters/flag/<int:id>/')

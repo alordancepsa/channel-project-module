@@ -1,0 +1,36 @@
+Example endpoint creating new company
+---
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      id: Product
+      required:
+        - name
+        - flag
+      properties:
+       name:
+         type: string
+       flag:
+         type: string
+       phone:
+         type: string
+
+definitions:
+  MasterCompany:
+    type: object
+    properties:
+      name:
+        type: string
+      flag:
+        type: string
+      phone:
+        type: string
+
+responses:
+  200:
+    description: A Master Company
+    schema:
+      $ref: '#/definitions/MasterCompany'
+
