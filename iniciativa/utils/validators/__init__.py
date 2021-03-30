@@ -5,24 +5,36 @@ dummy = {
   "offset": 0,
   "query":  [
     {
-      "field": "first_name",
-      "operator": "EQ",
-      "value": "Dixie"
+      "field": "name",
+      "operator": "LIKE",
+      "value": "%com%"
     },
     "OR",
     [
       {
-        "field": "last_name",
+        "field": "phone",
         "operator": "NEQ",
-        "value": "Smith"
+        "value": "123"
       },
       "OR",
       {
-        "field": "middle_name",
+        "field": "flag",
         "operator": "EQ",
-        "value": "Sam"
+        "value": "123"
       }
-    ]
+    ],
+    "OR",
+      {
+        "field": "numeric_field",
+        "operator": "EQ",
+        "value": 123.0
+      },
+    "OR",
+    {
+        "field": "boolean_field",
+        "operator": "EQ",
+        "value": True
+    }
   ]
 }
 
