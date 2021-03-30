@@ -1,9 +1,9 @@
+import sys, traceback
 from flasgger import swag_from
 from flask_restful import Resource, Api
 from flask import request
-from sqlalchemy import text
+from sqlalchemy import text, asc, desc
 from marshmallow import ValidationError
-
 from iniciativa.app import db
 from iniciativa.utils import process
 from iniciativa.utils.validators import QuerySchema
@@ -60,16 +60,67 @@ class CompanySearch(Resource):
 
     @swag_from('swagger/query.yml')
     def post(self):
-        
-        # queryData = QuerySchema().load(request.json)
-        queryData = request.json
-        queryParams = {}
-        where = process(request.json, queryParams)
+        """
+        Try this query in swagger
+        {
+            "itemsPerPage": 2,
+            "orderby": "id asc",
+            "offset": 0,
+            "query": [ {
+                  "field": "name",
+                  "operator": "LIKE",
+                  "value": "%com%"
+                    },
+                "OR",
+                [
+                  {
+                    "field": "phone",
+                    "operator": "NEQ",
+                    "value": "123"
+                  },
+                  "OR",
+                  {
+                    "field": "flag",
+                    "operator": "EQ",
+                    "value": "123"
+                  }
+                ]
+            ]
+        }
+        """
 
-        companies = MastersCompany.query.filter(text(where)).params(queryParams).all()
 
-        return {
-                'metadata': {"countsTotal": 10},
-                'rows': [company.serialize() for company in companies]
-               }, 201
+        try:
+            # TODO 1 marshmallow val do it well
+                # queryData = QuerySchema().load(request.json)
+            queryData = request.json
+
+            itemsPerPage = queryData["itemsPerPage"]
+            offset = queryData["offset"]
+            orderby = queryData["orderby"] 
+
+            queryParams = {}
+            where = process(queryData["query"], queryParams)
+            
+            companies = MastersCompany.query\
+                    .filter(text(where))\
+                    .params(queryParams)
+
+            countsTotal = companies.count()
+
+            companies = companies.order_by(text(orderby))\
+                    .paginate((offset//itemsPerPage)+1, itemsPerPage, error_out=False)\
+                    .items
+
+            return {
+                    'nextOffset': 0 if offset+itemsPerPage >= countsTotal else offset+itemsPerPage,
+                    'metadata': {"countsTotal": countsTotal},
+                    'rows': [company.serialize() for company in companies]
+                   }, 201
+
+        except Exception as e:
+            print("Exception in user code:")
+            print("-"*60)
+            traceback.print_exc(file=sys.stdout)
+            print("-"*60)
 
