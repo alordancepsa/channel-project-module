@@ -61,7 +61,6 @@ class CompanySearch(Resource):
     @swag_from('swagger/query.yml')
     def post(self):
         
-
         # queryData = QuerySchema().load(request.json)
         queryData = request.json
         queryParams = {}
@@ -72,5 +71,5 @@ class CompanySearch(Resource):
         return {
                 'metadata': {"countsTotal": 10},
                 'rows': [company.serialize() for company in companies]
-               }
+               }, 201
 
