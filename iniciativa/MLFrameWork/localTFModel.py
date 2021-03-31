@@ -31,7 +31,7 @@ class LocalTFModel():
 
 
     def predict(data):
-
+        
         return self.model.predict(data)
     
 

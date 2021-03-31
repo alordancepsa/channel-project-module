@@ -19,16 +19,16 @@ class Config(object):
 
     ML_MODELS=[
          {
-             "NAME": "MODEL_SALES_PREDICT",
+            "NAME": "MODEL_SALES_PREDICT",
             "type": ModelType.LOCAL_MODEL,
             "URL": 'https//.....'
          },
          {
 
             "NAME": "MODEL_REMOTE_SALES_PREDICT",
-             "type": ModelType.REMOTE_MODEL,
-             "endpoint": 'https//.....',
-             "headers": {"api-id": "asdasd", "api-key": "asasdasdasdñlakdsñlk"}
+            "type": ModelType.REMOTE_MODEL,
+            "endpoint": 'https//.....',
+            "headers": {"api-id": "asdasd", "api-key": "asasdasdasdñlakdsñlk"}
          },
 
         {
