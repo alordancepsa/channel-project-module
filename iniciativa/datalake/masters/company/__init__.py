@@ -26,8 +26,20 @@ class MastersCompany(db.Model):
     @classmethod
     def create(cls, data):
         model = cls()
+
         model.name = data.get('name')
         model.phone = data.get('phone')
         model.flag = data.get('flag')
         model.hiddenfield = "somefiled not exposed to api and not serialized"
+
         return model
+
+    def update(self, data):
+
+        self.name = data.get('name')
+        self.phone = data.get('phone')
+        self.flag = data.get('flag')
+    
+        db.session.commit()
+
+        return self

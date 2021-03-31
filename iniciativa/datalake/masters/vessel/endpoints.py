@@ -4,36 +4,36 @@ from flask_restful import Resource, Api
 from flask import request
 from sqlalchemy import text, asc, desc
 from marshmallow import ValidationError
+
 from iniciativa.app import db
 from iniciativa.utils import process
 from iniciativa.utils.validators import QuerySchema
 
-from . import MastersCompany
-from .validators import NewCompanySchema, UpdateCompanySchema
-# from .validators import CompanyPostPattern
+from . import MastersVessel
+from .validators import NewVesselSchema, UpdateVesselSchema
 
-class CompanyItem(Resource):
+class VesselItem(Resource):
     
     
     @swag_from('swagger/get.yml')
-    def get(self, company_id):
-        company = MastersCompany.query.get(company_id)
+    def get(self, vessel_id):
+        vessel = MastersVessel.query.get(vessel_id)
         
-        if company:
-            return company.serialize(), 200
+        if vessel:
+            return vessel.serialize(), 200
 
         return "NOT_FOUND", 400
 
     
     @swag_from('swagger/delete.yml')
-    def delete(self, company_id):
+    def delete(self, vessel_id):
         
-        company = MastersCompany.query.get(company_id)
+        vessel = MastersVessel.query.get(vessel_id)
         
-        if not company:
+        if not vessel:
             return "NOT_FOUND", 400
 
-        db.session.delete(company)
+        db.session.delete(vessel)
         db.session.commit()
 
         return "", 200
@@ -41,16 +41,16 @@ class CompanyItem(Resource):
 
 
     @swag_from('swagger/put.yml')
-    def put(self, company_id):
+    def put(self, vessel_id):
         
         try:
-            company = MastersCompany.query.get(company_id)
+            vessel = MastersVessel.query.get(vessel_id)
 
-            if not company:
+            if not vessel:
                 return "NOT_FOUND", 400
             
-            newCompanyData = UpdateCompanySchema().load(request.json)
-            company.update(newCompanyData)
+            newVesselData = UpdateVesselSchema().load(request.json)
+            vessel.update(newVesselData)
 
         except ValidationError as erro:
             return erro.messages, 400
@@ -64,19 +64,19 @@ class CompanyItem(Resource):
             return "UKNOW_ERROR", 500
 
 
-        return company.serialize(), 201
+        return vessel.serialize(), 201
 
-class CompanyIndex(Resource):
+class VesselIndex(Resource):
 
     
     @swag_from('swagger/post.yml')
     def post(self):
         try:
-            companyData = NewCompanySchema().load(request.json)
+            vesselData = NewVesselSchema().load(request.json)
 
-            newCompany =  MastersCompany.create(companyData)
+            newVessel =  MastersVessel.create(vesselData)
              
-            db.session.add(newCompany)
+            db.session.add(newVessel)
             db.session.commit()
 
         except ValidationError as erro:
@@ -90,10 +90,10 @@ class CompanyIndex(Resource):
 
             return "UKNOW_ERROR", 500
         
-        return newCompany.serialize(), 201
+        return newVessel.serialize(), 201
     
 
-class CompanySearch(Resource):
+class VesselSearch(Resource):
 
     @swag_from('swagger/query.yml')
     def post(self):
@@ -111,14 +111,8 @@ class CompanySearch(Resource):
                 "OR",
                 [
                   {
-                    "field": "phone",
+                    "field": "imo",
                     "operator": "NEQ",
-                    "value": "123"
-                  },
-                  "OR",
-                  {
-                    "field": "flag",
-                    "operator": "EQ",
                     "value": "123"
                   }
                 ]
@@ -139,20 +133,20 @@ class CompanySearch(Resource):
             queryParams = {}
             where = process(queryData["query"], queryParams)
             
-            companies = MastersCompany.query\
+            items = MastersVessel.query\
                     .filter(text(where))\
                     .params(queryParams)
 
-            countsTotal = companies.count()
+            countsTotal = items.count()
 
-            companies = companies.order_by(text(orderby))\
+            items = items.order_by(text(orderby))\
                     .paginate((offset//itemsPerPage)+1, itemsPerPage, error_out=False)\
                     .items
 
             return {
                     'nextOffset': 0 if offset+itemsPerPage >= countsTotal else offset+itemsPerPage,
                     'metadata': {"countsTotal": countsTotal},
-                    'rows': [company.serialize() for company in companies]
+                    'rows': [item.serialize() for item in items]
                    }, 201
 
         except Exception as e:

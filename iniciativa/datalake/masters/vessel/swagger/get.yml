@@ -1,0 +1,26 @@
+Example endpoint GET a vessel
+---
+tags:
+  - name: Master Vessel
+parameters:
+  - name: vessel_id
+    in: path
+    type: string
+    required: true
+    
+definitions:
+  MasterVessel:
+    type: object
+    properties:
+      name:
+        type: string
+      tp_id:
+        type: number
+      imo:
+        type: string
+
+responses:
+  200:
+    description: A Master Vessel
+    schema:
+      $ref: '#/definitions/MasterVessel'

@@ -1,0 +1,14 @@
+Example endpoint DELETE a company
+---
+tags:
+  - name: Master Vessel
+parameters:
+  - name: vessel_id
+    in: path
+    required: true
+    type: number
+
+responses:
+  200:
+    description: A Master vessel deleted
+

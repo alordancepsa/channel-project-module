@@ -1,6 +1,12 @@
-Example endpoint creating new company
+Example endpoint PUT existing company
 ---
+tags:
+  - name: Master Company
 parameters:
+  - name: company_id
+    in: path
+    required: true
+    type: number
   - name: body
     in: body
     required: true

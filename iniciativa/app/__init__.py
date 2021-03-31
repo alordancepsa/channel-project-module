@@ -8,6 +8,7 @@ from flasgger import Swagger
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_marshmallow import Marshmallow
+from iniciativa.MLFrameWork.load_models import load_app_models
 
 from ..config import Config
 
@@ -22,11 +23,22 @@ db.init_app(app)
 api = Api(app)
 swagger = Swagger(app)
 
-    # db.create_all()
+ma = Marshmallow(app)
+
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
-ma = Marshmallow(app)
+
+# LOADING_APP_MODELS
+appModels = load_app_models(Config.ML_MODELS)
+
+
+
+
+
+
+
+
 # manager.handle(__name__, ["db", "upgrade"])
 
 

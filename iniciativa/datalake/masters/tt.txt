@@ -1,0 +1,16 @@
+    settings_id = db.Column(
+        db.Integer(), db.ForeignKey("settings.id", ondelete="CASCADE")
+    )
+
+    settings = db.relationship(
+        "Settings",
+        backref=db.backref("bars", order_by="SettingsBar.bar", lazy="joined"),
+    )
+
+
+User{
+
+    company_id = db.Column(db.Integer(), db.ForeignKey("company.id"))
+    company = db.relationship("Company")
+
+}

@@ -1,4 +1,4 @@
-Default complex query
+Example endpoint creating POST a new company
 ---
 tags:
   - name: Master Company

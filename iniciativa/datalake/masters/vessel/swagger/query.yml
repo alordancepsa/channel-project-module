@@ -1,5 +1,7 @@
-Example endpoint creating new company
+Default complex query
 ---
+tags:
+  - name: Master Vessel
 parameters:
   - name: body
     in: body

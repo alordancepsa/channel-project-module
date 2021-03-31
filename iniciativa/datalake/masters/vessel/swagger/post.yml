@@ -1,0 +1,38 @@
+Example endpoint creating POST a new vessel
+---
+tags:
+  - name: Master Vessel
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      id: Product
+      required:
+        - name
+        - imo
+      properties:
+       name:
+         type: string
+       tp_id:
+         type: number
+       imo:
+         type: string
+
+definitions:
+  MasterVessel:
+    type: object
+    properties:
+     name:
+       type: string
+     tp_id:
+       type: number
+     imo:
+       type: string
+
+responses:
+  200:
+    description: A Master Vessel
+    schema:
+      $ref: '#/definitions/MasterVessel'
+

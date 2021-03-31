@@ -1,8 +1,12 @@
-Default complex query
+Example endpoint PUT existing vessel
 ---
 tags:
-  - name: Master Company
+  - name: Master Vessel
 parameters:
+  - name: vessel_id
+    in: path
+    required: true
+    type: number
   - name: body
     in: body
     required: true
@@ -10,29 +14,29 @@ parameters:
       id: Product
       required:
         - name
-        - flag
+        - imo
       properties:
        name:
          type: string
-       flag:
-         type: string
-       phone:
+       tp_id:
+         type: number
+       imo:
          type: string
 
 definitions:
-  MasterCompany:
+  MasterVessel:
     type: object
     properties:
       name:
         type: string
-      flag:
-        type: string
-      phone:
+      tp_id:
+        type: number
+      imo:
         type: string
 
 responses:
   200:
-    description: A Master Company
+    description: A Master Vessel
     schema:
-      $ref: '#/definitions/MasterCompany'
+      $ref: '#/definitions/MasterVessel'
 
