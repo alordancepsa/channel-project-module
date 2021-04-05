@@ -29,8 +29,15 @@ class LocalTFModel():
         self.load(params)
 
 
+    def transform(self, data):
+        """
+        Perform transofmrations needed...
+        """
+        return data
 
     def predict(data):
+       
+        data = self.transform(data)
         
         return self.model.predict(data)
     

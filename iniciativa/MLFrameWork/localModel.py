@@ -23,7 +23,12 @@ class LocalModel():
         self.params = params
         self.model = self.load(params["URL"])
 
+    def transform(self, data):
+        """
+        Do transofrmations needed
+        """
+        return data
 
     def predict(data):
-
+        data = self.transform(data)
         return self.model.predict(data)

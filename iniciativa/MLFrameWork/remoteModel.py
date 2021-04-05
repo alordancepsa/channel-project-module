@@ -11,8 +11,15 @@ class RemoteModel():
         self.params = params
 
 
-    def predict(data):
+    def transform(self, data):
+        """
+        Perform data transformations needed
+        """
+        return data
 
+    def predict(data):
+        
+        data = self.transform(data)
         return requests.post(self.params["endpoint"], {"body": data} , params["headers"])
     
 

@@ -28,6 +28,13 @@ Este boileplate esta adaptado para funcionar sobre lambdas con solo 5 minutos se
 
 (http://localhost:5000/apidocs la generación de swagger y descubrimiento de endpoints es automatica)
 
+## Examples provided
+
+ - Relationship with FKey between tables /iniciativa/datalake/company/views.py
+ - Example ML FrameWork /iniciativa/MLFrameWork and /iniciativa/datalake/company/views.py
+ - Example RestApi CRUD /iniciativa/datalake/company/endpoints.py
+ - Example dynamic table query /iniciativa/datalake/company/endpoints.py
+
 ## Migraciones de estructura de base de datos
 
 Primero crea una nueva tabla o añade un campo a una existente
