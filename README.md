@@ -2,6 +2,14 @@
 
 Python backend-api desacoplada del entorno, puede  funcionar en lambda/ecs/docker/kubernets/ec2 o en cualquier cloud (AWS/GCP/Azure)
 
+
+## Examples provided until now...
+
+ - Relationship with FKey between tables /iniciativa/datalake/company/views.py
+ - Example ML FrameWork /iniciativa/MLFrameWork and /iniciativa/datalake/company/views.py
+ - Example RestApi CRUD /iniciativa/datalake/company/endpoints.py
+ - Example dynamic table query /iniciativa/datalake/company/endpoints.py
+
 ## Key points
 [![Points](res/points.png)]
 
@@ -27,13 +35,6 @@ Este boileplate esta adaptado para funcionar sobre lambdas con solo 5 minutos se
  - sls wsgi serve --port 5000
 
 (http://localhost:5000/apidocs la generación de swagger y descubrimiento de endpoints es automatica)
-
-## Examples provided
-
- - Relationship with FKey between tables /iniciativa/datalake/company/views.py
- - Example ML FrameWork /iniciativa/MLFrameWork and /iniciativa/datalake/company/views.py
- - Example RestApi CRUD /iniciativa/datalake/company/endpoints.py
- - Example dynamic table query /iniciativa/datalake/company/endpoints.py
 
 ## Migraciones de estructura de base de datos
 
