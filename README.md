@@ -54,11 +54,11 @@ Run:
  - aws s3 cp ./serverless/iniciativa.zip BUCKET_NAME
  - iac for lambda...
 
-## TO Docker
+## TO ECS
 TODO DockerFile
 
  - docker build . -t iniciativa:latest
- - docker push aws_account_id.dkr.ecr.region.amazonaws.com/iniciativa
+ - docker push aws_account_id.dkr.ecr.region.amazonaws.com/iniciativa:latest
  - force reload task definition...
 
 ## TO EC2
