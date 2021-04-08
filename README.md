@@ -30,7 +30,7 @@ Este boileplate esta adaptado para funcionar sobre lambdas con solo 5 minutos se
  - source venv/bin/activate
  - pip install -r requirements.txt
 
-## Iniciamos el servicio en este caso emulando aws lambda
+## Iniciamos el servicio en local este caso emulando aws lambda
  - source venv/bin/activate
  - sls wsgi serve --port 5000
 
@@ -46,3 +46,27 @@ La migraciones se ejecutan en dos pasos:
 
 Las bases de datos se ha actualizado automaticamente y este fichero conforma parte de las migraciones automaticas que pueden subir en los diferentes entornos DEV/QA/PRO (estas se pueden ejecutar en jenkins o directamente al levantar la app)
 
+
+## TO AWS Lambda
+Run:
+
+ - serverless package
+ - aws s3 cp ./serverless/iniciativa.zip BUCKET_NAME
+ - iac for lambda...
+
+## TO Docker
+TODO DockerFile
+
+ - docker build . -t iniciativa:latest
+ - docker push aws_account_id.dkr.ecr.region.amazonaws.com/iniciativa
+ - force reload task definition...
+
+## TO EC2
+TODO create app file 
+Prepare user data
+
+  - git clone repo 
+  - virtualenv --python python3
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+  - python app.py

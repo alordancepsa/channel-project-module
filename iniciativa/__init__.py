@@ -16,6 +16,7 @@ from .datalake.masters.company.views import view_predict_saleslocal_TF
 # ALL API resource
 from .datalake.masters.company.endpoints import CompanyItem, CompanyIndex, CompanySearch
 from .datalake.masters.vessel.endpoints import VesselItem, VesselIndex, VesselSearch
+from .datalake.masters.formulas.endpoints import FormulaItem
 
 ## MASTER COMPANY
 api.add_resource(CompanyItem, '/masters/company/<int:company_id>')
@@ -27,3 +28,6 @@ api.add_resource(VesselItem, '/masters/vessel/<int:vessel_id>')
 api.add_resource(VesselIndex, '/masters/vessel')
 api.add_resource(VesselSearch, '/masters/vessel/search')
 
+
+# FORMULAS ENDPOINT
+api.add_resource(FormulaItem, '/formulas/<int:formula_id>')

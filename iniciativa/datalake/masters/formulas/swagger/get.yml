@@ -1,0 +1,26 @@
+Example endpoint GET a RMC Formulas
+---
+tags:
+  - name: Formula Get
+parameters:
+  - name: formula_id
+    in: path
+    type: string
+    required: true
+    
+definitions:
+  MasterCompany:
+    type: object
+    properties:
+      name:
+        type: string
+      flag:
+        type: string
+      phone:
+        type: string
+
+responses:
+  200:
+    description: A Master Company
+    schema:
+      $ref: '#/definitions/MasterCompany'
